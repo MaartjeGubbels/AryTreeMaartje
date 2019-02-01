@@ -8,6 +8,8 @@ namespace AryTreeMaartje
 {
     public class TreeNode<T>
     {
+
+        // Create treenode with value, parent and list with children
         public T Value { get; set; }
         public TreeNode<T> parent { get; set; }
         public List<TreeNode<T>> children { get; set; }
@@ -18,7 +20,8 @@ namespace AryTreeMaartje
             parent = Parent;
             children = new List<TreeNode<T>>();
         }
-
+         
+        // count the nr of dexcendants
         public int DescendantCount()
         {
             int count = children.Count;
@@ -29,6 +32,7 @@ namespace AryTreeMaartje
             return count;
         }
 
+        // count the number of leafs
         public int LeafCount()
         {
             if (children.Count == 0)
@@ -42,7 +46,7 @@ namespace AryTreeMaartje
             return leafCount;
         }
 
-
+        // return list with values of the nodes
         public List<T> Values()
         {
             List<T> TraverseList = new List<T>();
@@ -59,6 +63,7 @@ namespace AryTreeMaartje
             return TraverseList;
         }
 
+        // find all the dexcendants
         public List<TreeNode<T>> Descendants()
         {
             List<TreeNode<T>> DescList = new List<TreeNode<T>>();
@@ -74,7 +79,8 @@ namespace AryTreeMaartje
 
             return DescList;
         }
-
+        
+        // find sum to root
         public T SumToRoot()
         {
             dynamic sum = Value;
@@ -85,6 +91,7 @@ namespace AryTreeMaartje
             return sum;
         }
 
+        // find the sum to every leaf
         public dynamic SumToLeafs()
         {
             List<T> SumToLeafs = new List<T>();
@@ -94,27 +101,9 @@ namespace AryTreeMaartje
                 {
                     SumToLeafs.Add(node.SumToRoot());
                 }
-                //node.SumToLeafs();
             }
             return SumToLeafs;
         }
 
-        //public IEnumerator<T> CreateEnumerator()
-        //{
-        //foreach (TreeNode<T> child in children)
-        //{
-        //    yield return child.Value;
-        //  }
-        //}
-
-        //public IEnumerator<T> GetEnumerator()
-        //{
-        //  return CreateEnumerator();
-        //}
-
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //  return (IEnumerator) GetEnumerator();
-        //}
     }
 }
